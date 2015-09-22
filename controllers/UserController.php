@@ -170,6 +170,16 @@ class UserController extends Controller
     
     public function actionProfile()
     {
+        $result = '';
+                
+        if (Yii::$app->request->isPost) {
+            $link = Yii::$app->request->post('link');
+            if ($link) {
+                $url = new \app\models\Url;
+                $result = $url->addUrl($link);
+            }
+        }
+        
         Yii::$app->user->setReturnUrl(\yii\helpers\Url::to());
         
         $attributes = [
@@ -193,7 +203,8 @@ class UserController extends Controller
         $attributes[] = 'created_at:datetime';
         
         return $this->render('profile', [
-            'attributes' => $attributes
+            'attributes' => $attributes,
+            'result' => $result
         ]);
     }
     

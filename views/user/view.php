@@ -26,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'profile.recommender_bonus',
             'profile.buyer_bonus',
             'created_at:datetime',
+            'profile.status.name'
         ],
     ]) ?>
     

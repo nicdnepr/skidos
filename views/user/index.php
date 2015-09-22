@@ -11,7 +11,7 @@ use app\models\User;
 $this->title = 'Пользователи';
 
 if ($role == User::ROLE_SHOP) {
-    $this->title = 'Магазины';
+    $this->title = 'Активные магазины';
 }
 
 $this->params['breadcrumbs'][] = $this->title;
@@ -29,9 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'email:email',
-            'phone',
+            //'phone',
             'balance',
             'created_at:datetime',
             [

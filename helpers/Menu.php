@@ -31,26 +31,14 @@ class Menu
             
                 $items = [
                     [
-                        'label' => 'Пользователи', 'url' => ['user/index', 'role'=>User::ROLE_USER]
+                        'label' => 'Активные магазины', 'url' => ['user/index', 'role'=>User::ROLE_SHOP]
                     ],
                     [
-                        'label' => 'Магазины', 'url' => ['user/index', 'role'=>User::ROLE_SHOP]
+                        'label' => 'Магазины на модерации', 'url' => ['moderate-shop/index']
                     ],
                     [
-                        'label' => 'Ссылки', 'url' => ['url/index']
+                        'label' => 'Статусы для магазинов', 'url' => ['shop-status/index']
                     ],
-                    [
-                        'label' => 'Комментарии', 'url' => ['comment/index']
-                    ],
-                    [
-                        'label' => 'Платежи', 'url' => ['paylog/index']
-                    ],
-                    [
-                        'label' => 'Покупки', 'url' => ['purchase/index']
-                    ],
-                    [
-                        'label' => 'Пополнить счет', 'url' => ['paylog/create']
-                    ]
                 ];
 
             } else {
@@ -60,29 +48,26 @@ class Menu
                         'label' => 'Профиль', 'url' => ['user/profile']
                     ],
                     [
-                        'label' => 'Комментарии', 'url' => ['comment/list']
-                    ],
-                    [
-                        'label' => 'Платежи', 'url' => ['paylog/list']
+                        'label' => 'Транзакции', 'url' => ['paylog/list']
                     ]
                 ];
 
                 if (Yii::$app->user->can(User::ROLE_USER)) {
                     
-                    $items = ArrayHelper::merge($items, [
-                        [
-                            'label' => 'Магазины', 'url' => ['user/shop-list']
-                        ],
-                        [
-                            'label' => 'Покупки', 'url' => ['purchase/user-list']
-                        ],
-                        [
-                            'label' => 'Покупки по рекомендации', 'url' => ['purchase/affiliate-list']
-                        ],
-                        [
-                            'label' => 'Порекомендовать', 'url' => ['user/recommend']
-                        ]
-                    ]);
+//                    $items = ArrayHelper::merge($items, [
+//                        [
+//                            'label' => 'Магазины', 'url' => ['user/shop-list']
+//                        ],
+//                        [
+//                            'label' => 'Покупки', 'url' => ['purchase/user-list']
+//                        ],
+//                        [
+//                            'label' => 'Покупки по рекомендации', 'url' => ['purchase/affiliate-list']
+//                        ],
+//                        [
+//                            'label' => 'Порекомендовать', 'url' => ['user/recommend']
+//                        ]
+//                    ]);
 
                 } elseif (Yii::$app->user->can(User::ROLE_SHOP)) {
 

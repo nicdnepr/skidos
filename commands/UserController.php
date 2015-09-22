@@ -33,7 +33,7 @@ class UserController extends Controller
     private function createUser($login)
     {
         $user = new User;
-        $user->email = $login;
+        $user->email = $login . '@mail.com';
         $user->setPassword($user->email);
         $user->generateAuthKey();
         $user->save(false);
@@ -46,7 +46,7 @@ class UserController extends Controller
     private function createShop($login, $buyer_bonus, $recommender_bonus)
     {
         $user = new User;
-        $user->email = $login;
+        $user->email = $login . '@mail.com';
         $user->setPassword($user->email);
         $user->generateAuthKey();
         $user->save(false);
@@ -56,6 +56,8 @@ class UserController extends Controller
         $profile->url = 'https://temp-mail.ru';
         $profile->buyer_bonus = $buyer_bonus;
         $profile->recommender_bonus = $recommender_bonus;
+        $profile->status_id = 1;
+        $profile->host = $profile->getHost($profile->url);
         $profile->save(false);
         
         $this->auth->assign($this->auth->createRole(User::ROLE_SHOP), $user->id);

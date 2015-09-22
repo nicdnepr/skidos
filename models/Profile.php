@@ -10,8 +10,10 @@ use Yii;
  * @property integer $id
  * @property integer $user_id
  * @property string $url
+ * @property string $host
  * @property integer $recommender_bonus
  * @property integer $buyer_bonus
+ * @property integer $status_id
  */
 class Profile extends \yii\db\ActiveRecord
 {
@@ -35,6 +37,11 @@ class Profile extends \yii\db\ActiveRecord
             ['url', 'url']
         ];
     }
+    
+    public function getStatus()
+    {
+        return $this->hasOne(ShopStatus::className(), ['id'=>'status_id']);
+    }
 
     /**
      * @inheritdoc
@@ -48,5 +55,11 @@ class Profile extends \yii\db\ActiveRecord
             'recommender_bonus' => 'Бонус для рекомендателя %',
             'buyer_bonus' => 'Бонус для покупателя %',
         ];
+    }
+    
+    public function getHost($url)
+    {
+        $list = parse_url($url);
+        return str_replace('www.', '', $list['host']);
     }
 }

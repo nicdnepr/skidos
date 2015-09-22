@@ -292,8 +292,13 @@ class User extends ActiveRecord implements IdentityInterface
         
         $purchase->user_id = $this->id;
         $purchase->url_id = $url->id;
-        $purchase->shop_id = $url->user_id;
+        
+        if ($url->shop_id) {
+            $purchase->shop_id = $url->shop_id;
+        }
+        
         $purchase->status = Paylog::STATUS_PENDING;
+        $purchase->url = $url->link;
         $purchase->save(false);
         
         Yii::$app->mailer->compose('user/purchase', ['user'=>$this, 'url'=>$url])

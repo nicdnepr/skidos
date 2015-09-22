@@ -18,7 +18,7 @@
         "yiisoft/yii2": ">=2.0.4",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
-        "gonimar/yii2-robokassa": "dev-master",
+        "yii-cms/yii2-robokassa": "dev-master",
         "yandex-money/yandex-money-sdk-php": "*",
         "ladamalina/yii2-smsc": "*"
     },

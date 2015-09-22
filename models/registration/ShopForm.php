@@ -42,6 +42,8 @@ class ShopForm extends BaseForm
         $auth->assign($auth->getRole(User::ROLE_SHOP), $user->id);
 
         $profile->user_id = $user->id;
+        $profile->host = $profile->getHost($profile->url);
+        $profile->status_id = 1;
         $profile->save(false);
 
         $url = new Url;

@@ -1,0 +1,5 @@
+nbproject/
+config/db.local.php
+config/params.php
+vendor/
+runtime/

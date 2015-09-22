@@ -74,8 +74,8 @@ $config = [
             'enablePrettyUrl' => true,
             'rules' => [
                 
-            ]
-            //'showScriptName' => false,
+            ],
+            'showScriptName' => false,
         ],
     ],
     'params' => $params,
