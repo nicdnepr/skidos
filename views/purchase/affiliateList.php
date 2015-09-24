@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'url_id',
                 'format' => 'raw',
                 'value' => function($model) {
-                    return \Yii::$app->formatter->asUrl($model->url->link);
+                    return \Yii::$app->formatter->asUrl($model->url);
                 }
             ],
             'created_at:datetime'

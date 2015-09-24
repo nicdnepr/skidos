@@ -295,6 +295,8 @@ class User extends ActiveRecord implements IdentityInterface
         
         if ($url->shop_id) {
             $purchase->shop_id = $url->shop_id;
+        } elseif (isset($url->user->profile)) {
+            //$purchase->shop_id = $url->user->profile->user_id;
         }
         
         $purchase->status = Paylog::STATUS_PENDING;
@@ -402,5 +404,13 @@ class User extends ActiveRecord implements IdentityInterface
         }
         
         return false;
+    }
+    
+    public function getFullSum()
+    {
+        return (int)Paylog::find()
+                ->where(['user_id'=>Yii::$app->user->identity->id])
+                ->andWhere(['status'=>Paylog::STATUS_PAID])
+                ->sum('sum');
     }
 }

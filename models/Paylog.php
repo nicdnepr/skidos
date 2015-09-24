@@ -26,6 +26,9 @@ class Paylog extends \yii\db\ActiveRecord
     const STATUS_PENDING = 1;
     const STATUS_FAIL = 2;
     const STATUS_SUCCESS = 3;
+    const STATUS_CANCEL = 4;
+    const STATUS_APPROVE = 5;
+    const STATUS_PAID = 6;
     
     private $typeList;
     private $statusList;
@@ -42,7 +45,7 @@ class Paylog extends \yii\db\ActiveRecord
         ];
         
         $this->statusList = [
-            self::STATUS_PENDING => 'Ожидает оплаты',
+            self::STATUS_PENDING => 'На рассмотрении магазина',
             self::STATUS_FAIL => 'Не оплачен',
             self::STATUS_SUCCESS => 'Оплачен'
         ];

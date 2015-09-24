@@ -57,9 +57,10 @@ class Purchase extends \yii\db\ActiveRecord
             'user_id' => 'User',
             'shop_id' => 'Магазин',
             'url_id' => 'Ссылка',
+            'url' => 'Ссылка',
             'sum' => 'Сумма',
             'status' => 'Статус',
-            'created_at' => 'Дата покупки',
+            'created_at' => 'Дата',
             'phone' => $u->getAttributeLabel('phone')
         ];
     }
@@ -85,10 +86,10 @@ class Purchase extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUrl()
-    {
-        return $this->hasOne(Url::className(), ['id' => 'url_id']);
-    }
+//    public function getUrl()
+//    {
+//        return $this->hasOne(Url::className(), ['id' => 'url_id']);
+//    }
 
     /**
      * @return \yii\db\ActiveQuery

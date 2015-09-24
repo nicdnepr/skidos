@@ -29,7 +29,7 @@ class PurchaseController extends Controller
                         'roles' => ['?', '@']
                     ],
                     [
-                        'actions' => ['user-list', 'affiliate-list'],
+                        'actions' => ['user-list', 'affiliate-list', 'complaint'],
                         'allow' => true,
                         'roles' => [User::ROLE_USER]
                     ],
@@ -75,7 +75,10 @@ class PurchaseController extends Controller
     public function actionUserList()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Yii::$app->user->identity->getUserPurchases()->orderBy('created_at DESC')
+            'query' => Purchase::find()
+                ->where(['user_id'=>Yii::$app->user->identity->id])
+                ->orWhere(['affiliate_id'=>Yii::$app->user->identity->id])
+                ->orderBy('created_at DESC')
         ]);
         
         return $this->render('userList', [
@@ -244,5 +247,20 @@ class PurchaseController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    
+    public function actionComplaint()
+    {
+        $purchase = Purchase::findOne(Yii::$app->request->post('id'));
+        
+        
+        if (!$purchase || !isset($purchase->shop))
+            return;
+        
+        Yii::$app->mailer->compose('complaint', ['purchase'=>$purchase, 'user'=>Yii::$app->user->identity])
+            ->setFrom(Yii::$app->params['emailFrom'])
+            ->setTo([$purchase->shop->email])
+            ->setSubject('Жалоба')
+            ->send();
     }
 }

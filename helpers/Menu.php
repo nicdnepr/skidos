@@ -48,7 +48,7 @@ class Menu
                         'label' => 'Профиль', 'url' => ['user/profile']
                     ],
                     [
-                        'label' => 'Транзакции', 'url' => ['paylog/list']
+                        'label' => 'Транзакции', 'url' => ['purchase/user-list']
                     ]
                 ];
 
